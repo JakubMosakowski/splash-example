@@ -1,0 +1,111 @@
+plugins {
+  id 'com.android.application'
+  id 'kotlin-android'
+  id 'kotlin-kapt'
+}
+
+android {
+
+  //region Build Configuration
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  //endregion
+
+  //region Compile Options
+
+  compileSdkVersion 30
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
+
+  //endregion
+
+  //region Data Binding
+
+  buildFeatures {
+    dataBinding = true
+    viewBinding true
+  }
+
+  //endregion
+
+
+  //region Default Config
+
+  defaultConfig {
+    minSdkVersion 26
+    targetSdkVersion 30
+    applicationId "com.mosjak.snackbar"
+    versionCode 1
+    versionName "1.0"
+  }
+
+  testOptions {
+    execution 'ANDROIDX_TEST_ORCHESTRATOR'
+  }
+
+  //endregion
+
+  //region Kotlin Options
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8
+  }
+
+  //endregion
+}
+
+dependencies {
+
+  //region Application Files
+
+  implementation fileTree(dir: "libs", include: ["*.jar"])
+
+  //endregion
+
+  //region AndroidX
+
+  api deps.androidx.material
+  implementation deps.androidx.constraint
+  implementation deps.androidx.navigation_fragment
+  implementation deps.androidx.navigation_ui
+  implementation deps.androidx.recyclerview
+
+  //endregion
+
+  //region Dependency Injection
+
+
+  //endregion
+
+  //region Fast Adapter
+
+  implementation deps.fast_adapter.binding
+  implementation deps.fast_adapter.core
+  implementation deps.fast_adapter.ui
+  implementation deps.fast_adapter.utils
+
+  //endregion
+
+  //region Kotlin
+
+  implementation deps.kotlin.coroutines
+
+  //endregion
+
+  //region Database
+
+  api deps.database.runtime
+  implementation deps.database.ktx
+  kapt deps.database.compiler
+
+  //endregion
+}
