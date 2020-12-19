@@ -37,12 +37,11 @@ android {
 
   //endregion
 
-
   //region Default Config
 
   defaultConfig {
-    minSdkVersion 26
-    targetSdkVersion 30
+    minSdkVersion deps.build_versions.min_sdk
+    targetSdkVersion deps.build_versions.target_sdk
     applicationId "com.mosjak.snackbar"
     versionCode 1
     versionName "1.0"
@@ -83,6 +82,9 @@ dependencies {
 
   //region Dependency Injection
 
+  implementation deps.koin.core
+  implementation deps.koin.scope
+  implementation deps.koin.view_model
 
   //endregion
 

@@ -3,19 +3,31 @@
   package="com.mosjak.snackbar">
 
   <application
-    android:allowBackup="true"
+    android:name=".presentation.App"
+    android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.SnackSandbox">
-    <activity android:name=".MainActivity">
+
+    <!-- region Main -->
+
+    <activity
+      android:name=".presentation.main.MainActivity"
+      android:launchMode="singleTask"
+      android:screenOrientation="portrait"
+      android:windowSoftInputMode="adjustResize">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
+
+      <nav-graph android:value="@navigation/nav_main" />
     </activity>
+
+    <!-- endregion -->
+
   </application>
 
 </manifest>

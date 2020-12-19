@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- region Binding -->
+
+  <data>
+
+    <variable
+      name="viewModel"
+      type="com.mosjak.snackbar.presentation.main.list.ListViewModel" />
+
+  </data>
+
+  <!-- endregion -->
+
+  <!-- region Root -->
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+  <!-- endregion -->
+
+</layout>
