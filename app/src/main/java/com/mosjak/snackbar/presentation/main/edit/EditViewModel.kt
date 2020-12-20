@@ -25,14 +25,6 @@ class EditViewModel(
     _snackbarRequested.postValue(itemModel)
   }
 
-  fun onUndoClicked() = viewModelScope.launch {
-    repository.clearFlags()
-  }
-
-  fun onSnackbarDismissed() = viewModelScope.launch {
-    repository.deleteItems()
-  }
-
   private val _snackbarRequested: SingleLiveEvent<ItemModel> =
     SingleLiveEvent()
 

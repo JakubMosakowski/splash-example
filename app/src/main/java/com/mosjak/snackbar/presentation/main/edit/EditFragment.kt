@@ -9,6 +9,8 @@ import com.mosjak.snackbar.databinding.FragmentEditBinding
 import com.mosjak.snackbar.presentation.common.BaseFragment
 import com.mosjak.snackbar.presentation.main.item.Item
 import com.mosjak.snackbar.presentation.main.item.ItemEventHook
+import com.mosjak.snackbar.presentation.main.shared.DeleteViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EditFragment : BaseFragment<FragmentEditBinding, EditViewModel>() {
@@ -24,6 +26,9 @@ class EditFragment : BaseFragment<FragmentEditBinding, EditViewModel>() {
 
   override val viewModel: EditViewModel
     by viewModel()
+
+  private val deleteViewModel: DeleteViewModel
+    by sharedViewModel()
 
   //endregion
 
@@ -89,8 +94,8 @@ class EditFragment : BaseFragment<FragmentEditBinding, EditViewModel>() {
       .snackbarRequested
       .observe(viewLifecycleOwner) {
         showUndoDeleteSnackbar(
-          viewModel::onUndoClicked,
-          viewModel::onSnackbarDismissed
+          deleteViewModel::onUndoClicked,
+          deleteViewModel::onSnackbarDismissed
         )
       }
   }
