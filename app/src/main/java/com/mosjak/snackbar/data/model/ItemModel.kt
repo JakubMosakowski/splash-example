@@ -5,11 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "list_item")
-data class ListItem(
+data class ItemModel(
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "id")
   val id: Long,
 
   val name: String,
-  val text: String,
+  val toBeDeleted: Boolean = false
 )

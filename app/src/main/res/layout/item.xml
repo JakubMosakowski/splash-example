@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <!-- region Binding -->
+
+  <data>
+
+    <variable
+      name="itemText"
+      type="String" />
+
+    <variable
+      name="toBeDeleted"
+      type="Boolean" />
+
+  </data>
+
+  <!-- endregion -->
+
+  <!-- region Root -->
+
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@{toBeDeleted ? @color/red : @color/white}"
+    android:padding="16dp"
+    android:text="@{itemText}"
+    tools:text="Item 1" />
+
+  <!-- endregion -->
+
+</layout>

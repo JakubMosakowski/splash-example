@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+  <eat-comment />
+
+  <!-- region Items -->
+
+  <item name="item" type="id" />
+
+  <!-- endregion -->
+
+  <!-- region Ui -->
+
+  <item name="rootView" type="id" />
+
+  <!-- endregion -->
+
+</resources>

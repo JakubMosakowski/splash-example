@@ -1,36 +1,35 @@
-package com.mosjak.snackbar.presentation.main.list
+package com.mosjak.snackbar.presentation.main.edit
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import com.mikepenz.fastadapter.adapters.GenericFastItemAdapter
-import com.mosjak.snackbar.NavGraphDirections
 import com.mosjak.snackbar.R
 import com.mosjak.snackbar.data.model.ItemModel
-import com.mosjak.snackbar.databinding.FragmentListBinding
+import com.mosjak.snackbar.databinding.FragmentEditBinding
 import com.mosjak.snackbar.presentation.common.BaseFragment
 import com.mosjak.snackbar.presentation.main.item.Item
+import com.mosjak.snackbar.presentation.main.item.ItemEventHook
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
+class EditFragment : BaseFragment<FragmentEditBinding, EditViewModel>() {
 
   //region Ui
 
   override val layoutRes: Int
-    get() = R.layout.fragment_list
+    get() = R.layout.fragment_edit
 
   //endregion
 
   //region View Model
 
-  override val viewModel: ListViewModel
+  override val viewModel: EditViewModel
     by viewModel()
 
   //endregion
 
   //region Binding
 
-  override fun bindView(binding: FragmentListBinding) {
+  override fun bindView(binding: FragmentEditBinding) {
     binding
       .also { it.viewModel = viewModel }
   }
@@ -43,8 +42,9 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
     super.onViewCreated(view, savedInstanceState)
 
     initializeRecyclerView()
+    initializeEventHooks()
     observeItems()
-    observeClick()
+    observeSnackbar()
   }
 
   //endregion
@@ -58,7 +58,6 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
     by lazy { GenericFastItemAdapter() }
 
   private fun showItems(result: List<ItemModel>) {
-
     itemAdapter.setNewList(result.items())
   }
 
@@ -70,26 +69,43 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
       .observe(viewLifecycleOwner, ::showItems)
   }
 
-  private fun observeClick() {
-
-    viewModel
-      .editRequested
-      .observe(viewLifecycleOwner) { navigateToEdit() }
-  }
-
-  private fun navigateToEdit() {
-    findNavController()
-      .navigate(NavGraphDirections.actionEdit())
-  }
-
   //endregion
 
   //region Recycler View
 
-  private fun initializeRecyclerView() = with(binding.mainListRv) {
+  private fun initializeRecyclerView() = with(binding.editListRv) {
 
     // Assign adapter to recycler view.
     adapter = itemAdapter
+  }
+
+  //endregion
+
+  //region Snackbar
+
+  private fun observeSnackbar() {
+
+    viewModel
+      .snackbarRequested
+      .observe(viewLifecycleOwner) {
+        showUndoDeleteSnackbar(
+          viewModel::onUndoClicked,
+          viewModel::onSnackbarDismissed
+        )
+      }
+  }
+
+  //endregion
+
+  //region Event Hook
+
+  private fun initializeEventHooks() {
+
+    val eventHook = ItemEventHook(viewModel::itemClicked)
+
+    // Initialize event hooks.
+    itemAdapter
+      .addEventHook(eventHook)
   }
 
   //endregion

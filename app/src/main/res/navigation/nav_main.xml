@@ -18,16 +18,16 @@
 
   <!-- endregion -->
 
-  <!-- region Insert -->
+  <!-- region Edit -->
 
   <action
-    android:id="@+id/actionInsert"
-    app:destination="@+id/insertFragment" />
+    android:id="@+id/actionEdit"
+    app:destination="@+id/editFragment" />
 
   <fragment
-    android:id="@+id/insertFragment"
-    android:name="com.mosjak.snackbar.presentation.main.insert.InsertFragment"
-    tools:layout="@layout/fragment_insert" />
+    android:id="@+id/editFragment"
+    android:name="com.mosjak.snackbar.presentation.main.edit.EditFragment"
+    tools:layout="@layout/fragment_edit" />
 
   <!-- endregion -->
 
