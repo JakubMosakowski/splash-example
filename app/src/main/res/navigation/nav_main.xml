@@ -1,34 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/nav_graph"
-  app:startDestination="@id/listFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
 
-  <!-- region List -->
+    <!-- region Home -->
 
-  <action
-    android:id="@+id/actionList"
-    app:destination="@+id/listFragment" />
+    <action
+        android:id="@+id/actionHome"
+        app:destination="@+id/homeFragment" />
 
-  <fragment
-    android:id="@+id/listFragment"
-    android:name="com.mosjak.snackbar.presentation.main.list.ListFragment"
-    tools:layout="@layout/fragment_list" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mosjak.snackbar.presentation.main.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 
-  <!-- endregion -->
+    <!-- endregion -->
 
-  <!-- region Edit -->
+    <!-- region Nested Graph -->
 
-  <action
-    android:id="@+id/actionEdit"
-    app:destination="@+id/editFragment" />
+    <action
+        android:id="@+id/actionList"
+        app:destination="@id/nested_graph" />
 
-  <fragment
-    android:id="@+id/editFragment"
-    android:name="com.mosjak.snackbar.presentation.main.edit.EditFragment"
-    tools:layout="@layout/fragment_edit" />
+    <navigation
+        android:id="@+id/nested_graph"
+        app:startDestination="@id/listFragment">
 
-  <!-- endregion -->
+        <fragment
+            android:id="@+id/listFragment"
+            android:name="com.mosjak.snackbar.presentation.main.list.ListFragment"
+            tools:layout="@layout/fragment_list" />
+
+        <action
+            android:id="@+id/actionEdit"
+            app:destination="@id/editFragment" />
+
+        <fragment
+            android:id="@+id/editFragment"
+            android:name="com.mosjak.snackbar.presentation.main.edit.EditFragment"
+            tools:layout="@layout/fragment_edit" />
+
+    </navigation>
+
+    <!-- endregion -->
 
 </navigation>

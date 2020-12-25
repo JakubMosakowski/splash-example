@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-  <!-- region Binding -->
+    <!-- region Binding -->
 
-  <data>
+    <data>
 
-    <variable
-      name="viewModel"
-      type="com.mosjak.snackbar.presentation.main.list.ListViewModel" />
+        <variable
+            name="viewModel"
+            type="com.mosjak.snackbar.presentation.main.list.ListViewModel" />
 
-  </data>
-
-  <!-- endregion -->
-
-  <!-- region Root -->
-
-  <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/rootView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#C0C0C0"
-    android:orientation="horizontal">
-
-    <!-- region Navigate -->
-
-    <Button
-      android:id="@+id/navigateBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_margin="16dp"
-      android:onClick="@{() -> viewModel.onNavigateClicked()}"
-      android:text="@string/navigate"
-      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      tools:listitem="@layout/item" />
+    </data>
 
     <!-- endregion -->
 
-    <!-- region Recycler View -->
+    <!-- region Root -->
 
-    <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/mainListRv"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/navigateBtn"
-      tools:listitem="@layout/item" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C0C0C0"
+        android:orientation="horizontal">
+
+        <!-- region Navigate -->
+
+        <Button
+            android:id="@+id/homeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onHomeClicked()}"
+            android:text="@string/home"
+            app:layout_constraintEnd_toStartOf="@id/navigateBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/navigateBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.onNavigateClicked()}"
+            android:text="@string/navigate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/homeBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- endregion -->
+
+        <!-- region Recycler View -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mainListRv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/navigateBtn"
+            tools:listitem="@layout/item" />
+
+        <!-- endregion -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- endregion -->
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
-
-  <!-- endregion -->
 
 </layout>

@@ -1,13 +1,17 @@
 package com.mosjak.snackbar.presentation.main
 
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mosjak.snackbar.data.model.ItemModel
 import com.mosjak.snackbar.data.repository.ItemRepository
 import kotlinx.coroutines.launch
 
-class MainViewModel(
-  private val repository: ItemRepository
+class MainViewModel @ViewModelInject constructor(
+  private val repository: ItemRepository,
+  @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
   fun reinitializeDatabase() = viewModelScope.launch {

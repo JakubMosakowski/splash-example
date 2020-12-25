@@ -3,8 +3,9 @@ package com.mosjak.snackbar.data.repository
 import androidx.lifecycle.LiveData
 import com.mosjak.snackbar.data.db.ItemDao
 import com.mosjak.snackbar.data.model.ItemModel
+import javax.inject.Inject
 
-class ItemRepository(
+class ItemRepository @Inject constructor(
   private val dao: ItemDao
 ) {
 

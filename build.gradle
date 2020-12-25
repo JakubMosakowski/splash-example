@@ -9,6 +9,7 @@ buildscript {
     classpath deps.build.android_gradle_plugin
     classpath deps.build.kotlin_gradle_plugin
     classpath deps.build.navigation_safe_args
+    classpath deps.build.hilt_gradle_plugin
   }
 }
 

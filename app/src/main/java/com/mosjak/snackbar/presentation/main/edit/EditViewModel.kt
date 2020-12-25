@@ -1,16 +1,17 @@
 package com.mosjak.snackbar.presentation.main.edit
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.mosjak.snackbar.data.model.ItemModel
 import com.mosjak.snackbar.data.repository.ItemRepository
 import com.mosjak.snackbar.presentation.common.SingleLiveEvent
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class EditViewModel(
-  private val repository: ItemRepository
+class EditViewModel @ViewModelInject constructor(
+  private val repository: ItemRepository,
+  @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
   val items: LiveData<List<ItemModel>> =

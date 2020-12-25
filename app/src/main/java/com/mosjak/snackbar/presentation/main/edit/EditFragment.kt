@@ -2,6 +2,8 @@ package com.mosjak.snackbar.presentation.main.edit
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.mikepenz.fastadapter.adapters.GenericFastItemAdapter
 import com.mosjak.snackbar.R
 import com.mosjak.snackbar.data.model.ItemModel
@@ -10,9 +12,9 @@ import com.mosjak.snackbar.presentation.common.BaseFragment
 import com.mosjak.snackbar.presentation.main.item.Item
 import com.mosjak.snackbar.presentation.main.item.ItemEventHook
 import com.mosjak.snackbar.presentation.main.shared.DeleteViewModel
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditFragment : BaseFragment<FragmentEditBinding, EditViewModel>() {
 
   //region Ui
@@ -25,10 +27,10 @@ class EditFragment : BaseFragment<FragmentEditBinding, EditViewModel>() {
   //region View Model
 
   override val viewModel: EditViewModel
-    by viewModel()
+    by viewModels()
 
   private val deleteViewModel: DeleteViewModel
-    by sharedViewModel()
+    by navGraphViewModels(R.id.nested_graph) { defaultViewModelProviderFactory }
 
   //endregion
 

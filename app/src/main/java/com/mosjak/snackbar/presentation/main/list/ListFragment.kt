@@ -2,16 +2,19 @@ package com.mosjak.snackbar.presentation.main.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mikepenz.fastadapter.adapters.GenericFastItemAdapter
 import com.mosjak.snackbar.NavGraphDirections
+import com.mosjak.snackbar.NestedGraphDirections
 import com.mosjak.snackbar.R
 import com.mosjak.snackbar.data.model.ItemModel
 import com.mosjak.snackbar.databinding.FragmentListBinding
 import com.mosjak.snackbar.presentation.common.BaseFragment
 import com.mosjak.snackbar.presentation.main.item.Item
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
 
   //region Ui
@@ -24,7 +27,7 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
   //region View Model
 
   override val viewModel: ListViewModel
-    by viewModel()
+    by viewModels()
 
   //endregion
 
@@ -73,13 +76,22 @@ class ListFragment : BaseFragment<FragmentListBinding, ListViewModel>() {
   private fun observeClick() {
 
     viewModel
+      .homeRequested
+      .observe(viewLifecycleOwner) { navigateToHome() }
+
+    viewModel
       .editRequested
       .observe(viewLifecycleOwner) { navigateToEdit() }
   }
 
+  private fun navigateToHome() {
+    findNavController()
+      .navigate(NavGraphDirections.actionHome())
+  }
+
   private fun navigateToEdit() {
     findNavController()
-      .navigate(NavGraphDirections.actionEdit())
+      .navigate(NestedGraphDirections.actionEdit())
   }
 
   //endregion
