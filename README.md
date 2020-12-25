@@ -21,3 +21,10 @@ Now, neither dismissal nor undo action works (view model of the previous fragmen
 
 ### shared-view-model
 Here everything works as expected.
+
+### nav-graph-view-model
+An alternative approach that uses hilt and nested nav graph.
+The purpose of it is to limit SharedViewModel only to certain fragments.
+It doesn't make much sense in this scenario but may be useful in some cases.
+
+For example, buying flow for in shopping app.
